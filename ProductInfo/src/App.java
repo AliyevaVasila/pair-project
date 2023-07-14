@@ -71,7 +71,7 @@ public class App extends Application implements EventHandler<ActionEvent> {
 
         TableView<Customer> tableView = new TableView<>();
 
-        TableColumn<Customer, String> idColumn = new TableColumn<>("ID");
+        TableColumn<Customer, Integer> idColumn = new TableColumn<>("ID");
         TableColumn<Customer, String> nameColumn = new TableColumn<>("Name");
         TableColumn<Customer, String> sNameColumn = new TableColumn<>("Surname");
         TableColumn<Customer, Character> genColumn = new TableColumn<>("Gender");
