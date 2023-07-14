@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -19,15 +20,50 @@ public class App extends Application implements EventHandler<ActionEvent> {
     }
 
     @Override
-    public void handle(ActionEvent arg0) {
+    public void handle(ActionEvent event) {
+        Stage newStage = new Stage();
+        newStage.setTitle("Adding Customer");
 
+        Label label = new Label("ID");
+        Label label2 = new Label("Name");
+        Label label3 = new Label("Surname");
+        Label label4 = new Label("Gender");
+        Label label5 = new Label("Discount");
+
+        TextField field = new TextField();
+        TextField field2 = new TextField();
+        TextField field3 = new TextField();
+        TextField field4 = new TextField();
+        TextField field5 = new TextField();
+
+        VBox vbox = new VBox(10);
+        vbox.setPadding(new Insets(20));
+        vbox.getChildren().addAll(label, label2, label3, label4, label5);
+        Button button4 = new Button("Save");
+
+        VBox vbox2 = new VBox(10);
+        vbox.setPadding(new Insets(20));
+        vbox2.getChildren().addAll(field, field2, field3, field4, field5, button4);
+
+        HBox hBox2 = new HBox(10);
+        hBox2.getChildren().addAll(vbox, vbox2);
+
+        Scene scene = new Scene(vbox, 200, 100);
+        newStage.setScene(scene);
+
+        newStage.show();
     }
 
     @Override
     public void start(Stage stage) throws Exception {
+        stage.setTitle("Customer info ");
         Button button1 = new Button("Save");
         Button button2 = new Button("Update");
         Button button3 = new Button("Delete");
+
+        button1.setOnAction(this);
+        button2.setOnAction(this);
+        button3.setOnAction(this);
 
         TableView<Customer> tableView = new TableView<>();
 
@@ -56,14 +92,12 @@ public class App extends Application implements EventHandler<ActionEvent> {
 
         hbox1.getChildren().addAll(button1, button2, button3);
 
-        VBox vBox= new VBox(10);
-        vBox.getChildren().addAll(hbox1, tableView);
+        VBox vBox1 = new VBox(10);
+        vBox1.getChildren().addAll(hbox1, tableView);
 
-        
-        Scene scene = new Scene(vBox, 620, 360);
+        Scene scene = new Scene(vBox1, 620, 360);
         stage.setScene(scene);
 
         stage.show();
-
     }
 }
