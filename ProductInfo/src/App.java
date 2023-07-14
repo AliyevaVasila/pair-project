@@ -51,7 +51,7 @@ public class App extends Application implements EventHandler<ActionEvent> {
         HBox hBox2 = new HBox(10);
         hBox2.getChildren().addAll(vbox, vbox2);
 
-        Scene scene = new Scene(hBox2, 200, 200);
+        Scene scene = new Scene(hBox2, 620, 360);
         newStage.setScene(scene);
 
         newStage.show();
