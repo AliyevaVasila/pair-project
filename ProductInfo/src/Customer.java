@@ -1,14 +1,14 @@
 public class Customer {
-   private int ID;
+   private String ID;
    private String name;
    private String surname;
    private char gender;
    private int discount;
 
-   public Customer(int ID, String name, String surname, int discount) {
+   public Customer(String ID, String name, String surname, char gender, int discount) {
       this.ID = ID;
       this.name = name;
-this.surname=surname;
+      this.surname = surname;
       this.gender = 'f';
       this.discount = discount;
 
@@ -22,11 +22,11 @@ this.surname=surname;
       this.surname = surname;
    }
 
-   public int getID() {
+   public String getID() {
       return ID;
    }
 
-   public void setID(int iD) {
+   public void setID(String iD) {
       ID = iD;
    }
 
