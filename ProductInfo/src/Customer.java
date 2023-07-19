@@ -1,12 +1,12 @@
 public class Customer {
-   private int ID;
+   private String ID;
    private String name;
    private String surname;
    private char gender;
    private int discount;
 
-   public Customer(int ID, String name, String surname, char gender, int discount) {
-      this.ID = ID;
+   public Customer(String ID, String name, String surname, char gender, int discount) {
+      this.ID = Util.getRandomString();
       this.name = name;
       this.surname = surname;
       this.gender = 'f';
@@ -22,14 +22,11 @@ public class Customer {
       this.surname = surname;
    }
 
-   public int getID() {
+   public String getID() {
       return ID;
    }
 
-   public void setID(int iD) {
-      ID = iD;
-   }
-
+  
    public String getName() {
       return name;
    }

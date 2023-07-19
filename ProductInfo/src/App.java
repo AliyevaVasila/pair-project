@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -89,15 +92,12 @@ public class App extends Application implements EventHandler<ActionEvent> {
         tableView.getColumns().add(genColumn);
         tableView.getColumns().add(disColumn);
 
-        // Create an ObservableList to hold the data for the TableView
-        ObservableList<Customer> customers = FXCollections.observableArrayList();
+        List<Customer> customers = new ArrayList<>();
 
-        // Add some sample data to the ObservableList
-        // customers.add(new Customer("1", "John", "Doe", 'M', 10));
-        // customers.add(new Customer("2", "Jane", "Smith", 'F', 5));
-
-        // Set the items of the TableView to the ObservableList
-        tableView.setItems(customers);
+        customers.add(new Customer("1", "John", "Doe", 'M', 10));
+        customers.add(new Customer("2", "Jane", "Smith", 'F', 5));
+      
+        tableView.setItems(FXCollections.observableArrayList(customers));
 
         HBox hbox1 = new HBox(10);
         hbox1.setPadding(new Insets(20));
