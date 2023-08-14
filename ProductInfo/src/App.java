@@ -1,4 +1,6 @@
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -70,6 +72,7 @@ public class App extends Application {
         tableView.getColumns().add(genColumn);
         tableView.getColumns().add(disColumn);
 
+        loadFromCSV();
         tableView.setItems(FXCollections.observableArrayList(customers));
 
         tableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Customer>() {
@@ -94,7 +97,7 @@ public class App extends Application {
         rootPane.setTop(hbox1);
         rootPane.setCenter(tableView);
 
-        Scene scene = new Scene(rootPane);
+        Scene scene = new Scene(rootPane, 530, 700);
         stage.setScene(scene);
 
         stage.show();
@@ -115,7 +118,7 @@ public class App extends Application {
         if (selectedIndex >= 0) {
             deleteCustomer(selectedIndex);
             tableView.setItems(FXCollections.observableArrayList(customers));
-            saveToCSV(); // Save the updated data to CSV
+            saveToCSV(); 
         }
     }
 
@@ -143,6 +146,25 @@ public class App extends Application {
                         + customer.getGender() + "," + customer.getDiscount();
                 writer.write(data);
                 writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+     private void loadFromCSV() {
+        try (BufferedReader reader = new BufferedReader(new FileReader("data.csv"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] data = line.split(",");
+                if (data.length >= 5) {
+                    String id = data[0];
+                    String name = data[1];
+                    String surname = data[2];
+                    char gender = data[3].charAt(0);
+                    int discount = Integer.parseInt(data[4]);
+                    Customer customer = new Customer(id, name, surname, gender, discount);
+                    customers.add(customer);
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -194,16 +216,13 @@ public class App extends Application {
         newStage.setScene(scene);
 
         if (selectedIndex >= 0) {
-            // Populate text fields with selected customer's information
             Customer selectedCustomer = customers.get(selectedIndex);
             field2.setText(selectedCustomer.getName());
             field3.setText(selectedCustomer.getSurname());
             field4.setText(String.valueOf(selectedCustomer.getGender()));
             field5.setText(String.valueOf(selectedCustomer.getDiscount()));
         }
-        // Handle the Save button click event
         butSave.setOnAction(e -> {
-            // Get the input from the text fields
             String name = field2.getText();
             String surname = field3.getText();
             char gender = field4.getText().charAt(0);
@@ -211,21 +230,18 @@ public class App extends Application {
             try {
                 discount = Integer.parseInt(field5.getText());
             } catch (NumberFormatException ex) {
-                discount = 0; // Default value or handle the error case
+                discount = 0; 
             }
 
             if (selectedIndex == -1) {
                 Customer newCustomer = new Customer(name, surname, gender, discount);
-                // Create a new customer
                 addCustomer(newCustomer);
                 saveToCSV();
             } else {
-                // Update an existing customer
                 updateCustomer(selectedIndex, name, surname, gender, discount);
 
             }
 
-            // Update the TableView
             tableView.setItems(FXCollections.observableArrayList(customers));
 
             newStage.close();

@@ -16,7 +16,17 @@ public class Customer {
 
 
 
-   public String parseTo() {
+   public Customer(String iD, String name, String surname, char gender, int discount) {
+        ID = iD;
+        this.name = name;
+        this.surname = surname;
+        this.gender = gender;
+        this.discount = discount;
+    }
+
+
+
+public String parseTo() {
       return ID + "," + name + "," + surname + "," + gender + "," + discount;
    }
 
