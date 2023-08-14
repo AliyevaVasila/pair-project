@@ -118,7 +118,6 @@ public class App extends Application {
             saveToCSV(); // Save the updated data to CSV
         }
     }
-    
 
     private void addCustomer(Customer customer) {
         customers.add(customer);
@@ -136,6 +135,7 @@ public class App extends Application {
         customer.setDiscount(discount);
         saveToCSV();
     }
+
     private void saveToCSV() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("data.csv", false))) {
             for (Customer customer : customers) {
@@ -148,7 +148,6 @@ public class App extends Application {
             e.printStackTrace();
         }
     }
-    
 
     private void deleteCustomer(int index) {
         customers.remove(index);
@@ -194,6 +193,14 @@ public class App extends Application {
         Scene scene = new Scene(gridPane, 360, 180);
         newStage.setScene(scene);
 
+        if (selectedIndex >= 0) {
+            // Populate text fields with selected customer's information
+            Customer selectedCustomer = customers.get(selectedIndex);
+            field2.setText(selectedCustomer.getName());
+            field3.setText(selectedCustomer.getSurname());
+            field4.setText(String.valueOf(selectedCustomer.getGender()));
+            field5.setText(String.valueOf(selectedCustomer.getDiscount()));
+        }
         // Handle the Save button click event
         butSave.setOnAction(e -> {
             // Get the input from the text fields
