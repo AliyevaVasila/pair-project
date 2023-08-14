@@ -14,19 +14,7 @@ public class Customer {
 
     }
 
-   // public static Customer parseFrom(String countryRecord) throws Exception {
-   //    String[] token = countryRecord.split(",");
 
-   //    // try {
-   //    //    return new Customer(token[1],
-   //    //          token[2],
-   //    //          token[3],
-   //    //          token[4].charAt(0),
-   //    //          Integer.parseInt(token[5]));
-   //    // } catch (Exception e) {
-   //    //    throw new Exception(e.getMessage());
-   //    // }
-   // }
 
    public String parseTo() {
       return ID + "," + name + "," + surname + "," + gender + "," + discount;
