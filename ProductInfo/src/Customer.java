@@ -9,7 +9,7 @@ public class Customer {
         this.ID = Util.getRandomString();
         this.name = name;
         this.surname = surname;
-        this.gender = 'f';
+        this.gender = gender;
         this.discount = discount;
 
     }
@@ -52,7 +52,7 @@ public class Customer {
     }
 
     public void setGender(char gender) {
-        this.gender = 'm';
+        this.gender = gender;
     }
 
     public int getDiscount() {
