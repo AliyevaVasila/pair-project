@@ -133,7 +133,7 @@ public class App extends Application {
 
     private void openCustomerDialog(String title, int selectedIndex) {
         Stage newStage = new Stage();
-        newStage.setTitle(title);
+        newStage.setTitle(title); 
 
         Label label2 = new Label("Name");
         Label label3 = new Label("Surname");
